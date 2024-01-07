@@ -1,11 +1,11 @@
-import { Category } from "@/types/store";
 import Container from "../general/Container";
 import Link from "next/link";
 import NavRoutes from "./NavRoutes";
 import NavbarActions from "./NavbarActions";
+import getCategories from "@/actions/getCategories";
 
 const Navbar = async () => {
-    const categories: Category[] = [];
+    const categories = await getCategories();
 
     return (
         <div className="border-b">

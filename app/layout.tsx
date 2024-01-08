@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import ModalProvider from "@/providers/ModalProvider";
 import Navbar from "@/components/nav/NavBar";
+import NextThemeProvider from "@/providers/NextThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,11 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <ModalProvider />
-        {children}
+        <NextThemeProvider>
+          <Navbar />
+          <ModalProvider />
+          {children}
+        </NextThemeProvider>
       </body>
     </html>
   );

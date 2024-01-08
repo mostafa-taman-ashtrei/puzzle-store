@@ -8,18 +8,16 @@ import Image from "next/image";
 import { MouseEventHandler } from "react";
 import { Product } from "@/types/store";
 import usePreviewModal from "@/hooks/usePreviewModal";
-import { useRouter } from "next/navigation";
 
 interface ProductCard {
     data: Product
 }
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
-    const router = useRouter();
     const previewModal = usePreviewModal();
 
     const handleClick = () => {
-        router.push(`/product/${data?.id}`);
+        previewModal.onOpen(data);
     };
 
     const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -32,8 +30,8 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     };
 
     return (
-        <div onClick={handleClick} className="bg-gray-300 group cursor-pointer rounded-xl border p-3 space-y-4">
-            <div className="aspect-square rounded-xl bg-gray-100 relative">
+        <div onClick={handleClick} className="group cursor-pointer rounded-xl border p-3 space-y-4">
+            <div className="aspect-square rounded-xl relative">
                 <Image
                     src={data.images?.[0]?.url}
                     alt="product image"

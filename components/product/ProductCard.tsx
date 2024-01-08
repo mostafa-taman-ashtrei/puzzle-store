@@ -7,6 +7,7 @@ import IconButton from "../general/IconButton";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 import { Product } from "@/types/store";
+import useCart from "@/hooks/useCart";
 import usePreviewModal from "@/hooks/usePreviewModal";
 
 interface ProductCard {
@@ -15,6 +16,7 @@ interface ProductCard {
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const previewModal = usePreviewModal();
+    const cart = useCart();
 
     const handleClick = () => {
         previewModal.onOpen(data);
@@ -27,6 +29,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
+        cart.addItem(data);
     };
 
     return (

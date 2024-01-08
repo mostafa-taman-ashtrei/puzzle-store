@@ -4,13 +4,16 @@ import { Button } from "../ui/button";
 import Currency from "./Currency";
 import { Product } from "@/types/store";
 import { ShoppingBag } from "lucide-react";
+import useCart from "@/hooks/useCart";
 
 interface InfoProps {
     data: Product
 }
 
 const ProductInfo: React.FC<InfoProps> = ({ data }) => {
-    const onAddToCart = () => { };
+    const cart = useCart();
+
+    const onAddToCart = () => cart.addItem(data);
 
     return (
         <div>

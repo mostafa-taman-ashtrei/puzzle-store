@@ -1,3 +1,4 @@
+import { Flame } from "lucide-react";
 import NoResults from "../general/NoResults";
 import { Product } from "@/types/store";
 import ProductCard from "./ProductCard";
@@ -9,11 +10,14 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
     return (
-        <div className="space-y-4 border-t-2">
-
-            <h3 className="text-3xl my-2 font-bold tracking-tight text-center bg-gradient-to-br gradient-primary  text-transparent bg-clip-text">{title}</h3>
+        <div className="space-y-4">
+            <div className="flex flex-row items-center justify-center gap-2">
+                <Flame size={40} />
+                <h3 className="text-3xl my-2 font-bold tracking-tight text-center">{title}</h3>
+            </div>
 
             {items.length === 0 && <NoResults />}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {items.map((item) => (
                     <ProductCard key={item.id} data={item} />

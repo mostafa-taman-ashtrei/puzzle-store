@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { ShoppingBag } from "lucide-react";
 import ThemeTogglerButton from "./ThemeTogglerButton";
+import useCart from "@/hooks/useCart";
 import { useRouter } from "next/navigation";
 
 const NavbarActions = () => {
     const router = useRouter();
+    const cart = useCart();
+
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => { setIsMounted(true); }, []);
@@ -24,7 +27,7 @@ const NavbarActions = () => {
             >
                 <ShoppingBag size={20} />
                 <span className="ml-2 text-sm font-medium">
-                    5
+                    {cart.items.length}
                 </span>
             </Button>
             <ThemeTogglerButton />
